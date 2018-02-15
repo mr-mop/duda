@@ -26215,6 +26215,7 @@ static sxi32 jx9TokenizeInput(SyStream *pStream,SyToken *pToken,void *pUserData,
 					pStream->zText++;
 				}
 			}
+    // fall through
 		case '.':
 			if( pStream->zText < pStream->zEnd && (pStream->zText[0] == '.' || pStream->zText[0] == '=') ){
 				/* Concatenation operator: '..' or '.='  */
@@ -28418,10 +28419,10 @@ JX9_PRIVATE sxi32 SyHexStrToInt64(const char *zSrc, sxu32 nLen, void * pOutVal, 
 	}
 	zIn = zSrc;
 	for(;;){
-		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) break; nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
-		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) break; nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
-		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) break; nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
-		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) break; nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
+		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) { break; } nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
+		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) { break; } nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
+		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) { break; } nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
+		if(zSrc >= zEnd || !SyisHex(zSrc[0]) || (int)(zSrc-zIn) > 15) { break; } nVal = nVal * 16 + SyHexToint(zSrc[0]);  zSrc++ ;
 	}
 	while( zSrc < zEnd && SyisSpace(zSrc[0]) ){
 		zSrc++;
@@ -28576,19 +28577,19 @@ JX9_PRIVATE sxi32 SyStrToReal(const char *zSrc, sxu32 nLen, void * pOutVal, cons
 	}
 	Lim = SXDBL_DIG ;
 	for(;;){
-		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
-		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
-		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
-		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
+		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
+		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
+		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
+		if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; zSrc++ ; --Lim;
 	}
 	if( zSrc < zEnd && ( zSrc[0] == '.' || zSrc[0] == ',' ) ){
 		sxreal dec = 1.0;
 		zSrc++;
 		for(;;){
-			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
-			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
-			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
-			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) break ; Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
+			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
+			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
+			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
+			if(zSrc >= zEnd||!Lim||!SyisDigit(zSrc[0])) { break ; } Val = Val * 10.0 + (zSrc[0] - '0') ; dec *= 10.0; zSrc++ ;--Lim;
 		}
 		Val /= dec;
 	}
@@ -46468,7 +46469,7 @@ static int vm_builtin_get_resource_type(jx9_context *pCtx, int nArg, jx9_value *
 }
 /*
  * void dump(expression, ....)
- *   dump — Dumps information about a variable
+ *   dump ? Dumps information about a variable
  * Parameters
  *   One or more expression to dump.
  * Returns
@@ -47125,9 +47126,9 @@ static sxi32 VmExecIncludedFile(
  *  and the current working directory before failing. The include()
  *  construct will emit a warning if it cannot find a file; this is different
  *  behavior from require(), which will emit a fatal error.
- *  If a path is defined — whether absolute (starting with a drive letter
+ *  If a path is defined ? whether absolute (starting with a drive letter
  *  or \ on Windows, or / on Unix/Linux systems) or relative to the current
- *  directory (starting with . or ..) — the include_path will be ignored altogether.
+ *  directory (starting with . or ..) ? the include_path will be ignored altogether.
  *  For example, if a filename begins with ../, the parser will look in the parent
  *  directory to find the requested file.
  *  When a file is included, the code it contains inherits the variable scope

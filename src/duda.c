@@ -222,6 +222,8 @@ int duda_service_register(struct duda_api_objects *api, struct web_service *ws)
         cs_method = api->map->method_builtin_new("stats_txt", duda_stats_txt_cb, 0);
         api->map->interface_add_method(cs_method, cs_iface);
         mk_list_add(&cs_iface->_head, ws->map_interfaces);
+#else
+        mk_list_add(&cs_iface->_head, ws->map_interfaces);
 #endif
 
         /* Lookup callback functions for each registered method */

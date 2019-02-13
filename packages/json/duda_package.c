@@ -69,9 +69,9 @@ json_t *json_create_false()
  * @METHOD_PARAM: bool the boolean value, 0 = False, 1 = True
  * @METHOD_RETURN: Returns a Boolean type JSON item.
  */
-json_t *json_create_bool(int bool)
+json_t *json_create_bool(int boolValue)
 {
-    return cJSON_CreateBool(bool);
+    return cJSON_CreateBool(boolValue);
 }
 
 /*
